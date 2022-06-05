@@ -23,7 +23,7 @@ function getComputerSelection() {
   }
 }
 
-function getuserSelection() {
+let getuserSelection = () => {
   selection = prompt(
     `Select ${ROCK}, ${PAPER}, or ${SCISSORS}`,
     ''
