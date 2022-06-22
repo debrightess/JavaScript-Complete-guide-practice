@@ -61,8 +61,8 @@
 // const removedElements = hobbies.splice(-2, 1)
 // console.log(removedElements)
 
-const testResults = [1, 4.6, 1.4, 20.33, -3, 10]
-console.log(testResults.slice())
+// const testResults = [1, 4.6, 1.4, 20.33, -3, 10]
+// console.log(testResults.slice())
 
 // using slice to copy an array
 // const storedResults = testResults.slice()
@@ -71,12 +71,40 @@ console.log(testResults.slice())
 // console.log(testResults.splice(1, 4))
 
 // Adding elements at the end of an array using concat()
-const storedResults = testResults.concat([1, 4])
-console.log(storedResults)
+// const storedResults = testResults.concat([1, 4])
+// console.log(storedResults)
 
 // Retrieving index with indexOf() & lastIndexOf()
-console.log(testResults.indexOf(20.33))
+// console.log(testResults.indexOf(20.33))
 // last indexOf() starts from the right
 // indexOf does not work on objects
 
 // Using find() and findIndex()
+// const personalData = [{ name: 'Max' }, { name: 'Bob' }]
+
+// const bob = personalData.find((person, id, persons) => {
+//   return person.name === 'Bob'
+// })
+
+// console.log(bob)
+
+// const bobIndex = personalData.findIndex((person, id, persons) => {
+//   return person.name === 'Bob'
+// })
+
+// console.log(bobIndex)
+
+// The forEach() Method
+const prices = [28.19, 2.1, 99, 23]
+const tax = 0.23
+const taxAdjustedPrices = []
+
+// for (const price of prices) {
+//   taxAdjustedPrices.push(price * (1 + tax))
+// }
+
+prices.forEach((price, id, prices) => {
+  taxAdjustedPrices.push(price * (1 + tax))
+})
+
+console.log(taxAdjustedPrices)
