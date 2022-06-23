@@ -94,17 +94,89 @@
 
 // console.log(bobIndex)
 
-// The forEach() Method
-const prices = [28.19, 2.1, 99, 23]
-const tax = 0.23
-const taxAdjustedPrices = []
+// // The forEach() Method
+// const prices = [28.19, 2.1, 99, 23]
+// const tax = 0.23
+// const taxAdjustedPrices = []
 
 // for (const price of prices) {
 //   taxAdjustedPrices.push(price * (1 + tax))
 // }
 
-prices.forEach((price, id, prices) => {
-  taxAdjustedPrices.push(price * (1 + tax))
-})
+// prices.forEach((price, id, prices) => {
+//   const priceObj = { index: id, taxAdjustedPrices: price * (1 + tax) }
+//   taxAdjustedPrices.push(priceObj)
+// })
 
-console.log(taxAdjustedPrices)
+// console.log(taxAdjustedPrices)
+
+// // Transforming Data with map()
+
+// const prices = [10.5, 28.19, 2.1, 99, 23]
+// const tax = 0.23
+
+// const taxAdjustedPrices = prices.map((price, id, prices) => {
+//   const priceObj = { index: id, taxAdjPrice: price * (1 + tax) }
+//   return priceObj
+// })
+
+// console.log(prices, taxAdjustedPrices)
+
+// // sort()ing and reverse()ing
+// const sortedPrices = prices.sort((a, b) => {
+//   if (a > b) {
+//     return 1
+//   } else if (a === b) {
+//     return 0
+//   } else {
+//     return -1
+//   }
+// })
+// console.log(sortedPrices)
+// console.log(sortedPrices.reverse())
+// // Changing your sort logic will automatically do the reversal and save a line of code.
+
+// // Filtering arrays with filter()
+// const filteredArray = prices.filter((price) => {
+//   return price > 12
+// })
+
+// console.log(filteredArray)
+
+// The Reduce Method
+
+// const prices = [10.5, 28.19, 2.1, 99, 23]
+// // let sum = 0
+
+// // prices.forEach((price) => {
+// //   sum += price
+// // })
+// // console.log(sum)
+
+// const sum = prices.reduce((preValue, curValue) => {
+//   return preValue + curValue
+// }, 0)
+
+// console.log(sum)
+
+// // split() and join()
+
+// const dict = 'oxford,advanced,learners,dictionary'
+// const transformedDict = dict.split(',')
+// console.log(transformedDict)
+
+// const nameFragments = ['Bright', 'Tenalo']
+// const name = nameFragments.join(' ')
+// console.log(name)
+
+// // Spread operator (...)
+// const copiedNameFragments = [...nameFragments]
+// nameFragments.push('Tombari')
+// console.log(nameFragments, copiedNameFragments)
+
+// // Array Destructuring
+// const nameFragments = ['Bright', 'Tenalo']
+
+// const [firstName, lastName] = nameFragments
+
+// console.log(firstName, lastName)
