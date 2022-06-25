@@ -1,20 +1,65 @@
-let person = {
-  name: 'Max',
-  age: 30,
-  hobbies: ['Sports', 'Chess'],
-  greet: function () {
-    console.log('Hello dear')
-  },
+const addMovieBtn = document.getElementById('add-movie-btn')
+const searchBtn = document.getElementById('search-btn')
+
+const movies = []
+
+const renderMovies = (filter = '') => {
+  const movieLIst = document.getElementById('movie-list')
+
+  if (movies.length === 0) {
+    movieLIst.classList.remove('visible')
+  } else {
+    movieLIst.classList.add('visible')
+  }
+  movieLIst.innerHTML = ''
+
+  const filteredMovies = !filter
+    ? movies
+    : movies.filter((movie) => movie.info.title.includes(filter))
+
+  filteredMovies.forEach((movie) => {
+    const movieEl = document.createElement('li')
+    let text = movie.info.title + ' - '
+    for (const key in movie.info) {
+      if (key !== 'title') {
+        text = text + `${key}: ${movie.info[key]}`
+      }
+    }
+    movieEl.textContent = text
+    movieLIst.append(movieEl)
+  })
 }
 
-// Note: if you access a property of an object which does not exist, you get undefined.
+const addMovieHandler = () => {
+  const title = document.getElementById('title').value
+  const extraName = document.getElementById('extra-name').value
+  const extraValue = document.getElementById('extra-value').value
 
-// adding a property
-person.isAdmin = true
+  if (
+    title.trim() === '' ||
+    extraName.trim() === '' ||
+    extraValue.trim() === ''
+  ) {
+    return
+  }
 
-// deleting a property
-delete person.greet
+  const newMovie = {
+    info: {
+      title,
+      [extraName]: extraValue,
+    },
+    id: Math.random(),
+  }
 
-console.log(person)
+  movies.push(newMovie)
+  renderMovies()
+  console.log(newMovie)
+}
 
-// If you have objects with only numbers as keys, the numbers will be sorted.
+const searchMovieHandler = () => {
+  const filterTerm = document.getElementById('filter-title').value
+  renderMovies(filterTerm)
+}
+
+addMovieBtn.addEventListener('click', addMovieHandler)
+searchBtn.addEventListener('click', searchMovieHandler)
