@@ -1,20 +1,34 @@
-const productList = {
-  products: [
-    {
-      title: 'Headphone',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2013/07/13/12/17/headphone-159569__340.png',
-      price: 128,
-      description: 'Noise cancelling headphone',
-    },
-    {
-      title: 'Shoe',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2013/07/12/18/20/shoes-153310__340.png',
-      price: 80,
-      description: 'High top shoe for men',
-    },
-  ],
+class Product {
+  title = 'DEFAULT'
+  imageUrl
+  price
+  description
+
+  constructor(title, image, price, desc) {
+    this.title = title
+    this.imageUrl = image
+    this.price = price
+    this.description = desc
+  }
+}
+
+class ProductList {
+  products = [
+    new Product(
+      'Headphone',
+      'https://cdn.pixabay.com/photo/2014/07/09/23/19/headphones-388674_960_720.jpg',
+      88,
+      'Noise cancelling headphone'
+    ),
+    new Product(
+      'Shoe',
+      'https://cdn.pixabay.com/photo/2013/07/12/18/20/shoes-153310__340.png',
+      92,
+      'High top male running shoes'
+    ),
+  ]
+
+  constructor() {}
 
   render() {
     const renderHook = document.getElementById('app')
@@ -38,7 +52,8 @@ const productList = {
       prodList.append(prodEl)
     }
     renderHook.append(prodList)
-  },
+  }
 }
 
+const productList = new ProductList()
 productList.render()
