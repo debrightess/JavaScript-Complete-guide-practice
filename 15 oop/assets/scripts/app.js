@@ -1,8 +1,8 @@
 class Product {
-  title = 'DEFAULT'
-  imageUrl
-  price
-  description
+  // title = 'DEFAULT'
+  // imageUrl
+  // price
+  // description
 
   constructor(title, image, price, desc) {
     this.title = title
@@ -12,21 +12,62 @@ class Product {
   }
 }
 
-class ShoppingCart {
+class ElementAttribute {
+  constructor(attributeName, attributeValue) {
+    this.name = attributeName
+    this.value = attributeValue
+  }
+}
+
+class Components {
+  constructor(renderHook) {
+    this.hookId = renderHookId
+  }
+
+  createRootElement(tag, cssClasses, attributes) {
+    const rootElement = document.createElement(tag)
+    if (cssClasses) {
+      rootElement.className = cssClasses
+    }
+    if (attributes && attributes.length > 0) {
+      for (const attribute of attributes) {
+        rootElement.setAttribute(attribute.name, attribute.value)
+      }
+    }
+    document.getElementById(this.hookId).append(rootElement)
+    return this.rootElement
+  }
+}
+
+class ShoppingCart extends Components {
   items = []
 
+  set cartItems(value) {
+    this.items = value
+    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(
+      2
+    )}</h2>`
+  }
+
+  get totalAmount() {
+    const sum = this.items.reduce((prevValue, curItem) => {
+      return prevValue + curItem.price
+    }, 0)
+    return sum
+  }
+
   addProduct(product) {
-    this.items.push(product)
-    this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`
+    const updatedItems = [...this.items]
+    updatedItems.push(product)
+    this.cartItems = updatedItems
   }
 
   render() {
-    const cartEl = document.createElement('section')
+    const cartEl = this.createRootElement('section', 'cart')
     cartEl.innerHTML = `
       <h2>Total: \$${0}</h2>
       <button>Order Now!</button>
     `
-    cartEl.className = 'cart'
     this.totalOutput = cartEl.querySelector('h2')
     return cartEl
   }
